@@ -122,6 +122,15 @@ const getAllProperties = function(options, limit = 10) {
     }
   }
 
+  if (options.minimum_rating) {
+    queryParams.push(Number(options.minimum_rating));
+    if (queryParams.length > 1) {
+      queryString += `AND rating >= $${queryParams.length}`;
+    } else {
+      queryString += `WHERE rating >= $${queryParams.length}`;
+    }
+  }
+
   queryParams.push(limit);
   queryString += ` 
   GROUP BY properties.id
