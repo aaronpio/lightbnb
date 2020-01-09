@@ -1,6 +1,6 @@
-const database = require("../db/database");
-const apiRoutes = require("../routes/apiRoutes");
-const userRoutes = require("../routes/userRoutes");
+const database = require("./db/database");
+const apiRoutes = require("./routes/apiRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const path = require("path");
 
@@ -30,7 +30,7 @@ const userRouter = express.Router();
 userRoutes(userRouter, database);
 app.use("/users", userRouter);
 
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "./public")));
 
 app.get("/test", (req, res) => {
   res.send("🤗");
